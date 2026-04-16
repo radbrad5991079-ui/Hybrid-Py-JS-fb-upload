@@ -26,7 +26,7 @@ on:
       target_url:
         description: 'Target Website URL'
         required: true
-        default: 'https://dadocric.st/player.php?id=starsp'
+        default: 'https://dadocric.st/player.php?id=willowextra'
 
       # 🛡️ NAYA INPUT: PROXY TOGGLE
       use_proxy:
