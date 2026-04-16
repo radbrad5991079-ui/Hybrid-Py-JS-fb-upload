@@ -10,6 +10,7 @@ on:
         options:
           - 'Token1'
           - 'Token2'
+          - 'Token3'
         default: 'Dual'
       titles_list:
         description: 'Titles Array (Separate with ,,)'
