@@ -29,7 +29,7 @@ on:
         required: true
         default: 'https://dadocric.st/player.php?id=willowextra'
 
-      # 🛡️ NAYA INPUT: PROXY TOGGLE
+      # 🛡️ PROXY TOGGLE
       use_proxy:
         description: 'Proxy Use Karna Hai?'
         required: true
@@ -64,13 +64,18 @@ jobs:
         python-version: '3.10'
 
     - name: Install Node Libraries
-      run: npm install puppeteer axios form-data
+      run: npm install puppeteer
+
+    - name: Install Python Libraries
+      # 🛠️ NAYA: Python ke liye requests library lazmi hai FB API ke liye
+      run: pip install requests
 
     - name: Start The Hybrid Bot (Python Engine)
       env:
         FB_TOKEN_1: ${{ secrets.FB_TOKEN_1 }}
         FB_TOKEN_2: ${{ secrets.FB_TOKEN_2 }}
         FB_TOKEN_3: ${{ secrets.FB_TOKEN_3 }}
+      
         TOKEN_SELECTION: ${{ inputs.token_selection }} 
         GH_PAT: ${{ secrets.GH_PAT }}
         TITLES_LIST: ${{ inputs.titles_list }}
@@ -86,3 +91,112 @@ jobs:
         PROXY_PASS: 'pm4wnuro0gy9'
         
       run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" python -u manager.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# name: Ultimate Hybrid Video Bot (JS+PY)
+
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       token_selection:
+#         description: 'Facebook Token Select Karein'
+#         required: true
+#         type: choice
+#         options:
+#           - 'Token1'
+#           - 'Token2'
+#           - 'Token3'
+#         default: 'Dual'
+#       titles_list:
+#         description: 'Titles Array (Separate with ,,)'
+#         required: true
+#         default: 'Delhi Capitals vs Gujarat Titans Live Match Today,,Blockbuster Match DC vs GT'
+#       descs_list:
+#         description: 'Descriptions Array (Separate with ,,)'
+#         required: true
+#         default: 'DC take on GT in the latest IPL match. Watch the live action here without buffer,,The best IPL teams DC and GT face off!'
+#       hashtags:
+#         description: 'Hashtags (Space separated)'
+#         required: true
+#         default: '#IPL2026 #DCvsGT #DelhiCapitals #GujaratTitans #IPLLive #LiveMatch'
+#       target_url:
+#         description: 'Target Website URL'
+#         required: true
+#         default: 'https://dadocric.st/player.php?id=willowextra'
+
+#       # 🛡️ NAYA INPUT: PROXY TOGGLE
+#       use_proxy:
+#         description: 'Proxy Use Karna Hai?'
+#         required: true
+#         type: choice
+#         options:
+#           - 'No (Proxy OFF)'
+#           - 'Yes (Proxy ON)'
+#         default: 'No (Proxy OFF)'
+
+# jobs:
+#   run-bot:
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 360 
+
+#     steps:
+#     - name: Checkout Code
+#       uses: actions/checkout@v3
+
+#     - name: Install System Tools (FFmpeg & Chrome)
+#       run: |
+#         sudo apt-get update
+#         sudo apt-get install -y ffmpeg google-chrome-stable xvfb
+
+#     - name: Setup Node.js
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: '18'
+
+#     - name: Setup Python
+#       uses: actions/setup-python@v4
+#       with:
+#         python-version: '3.10'
+
+#     - name: Install Node Libraries
+#       run: npm install puppeteer axios form-data
+
+#     - name: Start The Hybrid Bot (Python Engine)
+#       env:
+#         FB_TOKEN_1: ${{ secrets.FB_TOKEN_1 }}
+#         FB_TOKEN_2: ${{ secrets.FB_TOKEN_2 }}
+#         FB_TOKEN_3: ${{ secrets.FB_TOKEN_3 }}
+#         TOKEN_SELECTION: ${{ inputs.token_selection }} 
+#         GH_PAT: ${{ secrets.GH_PAT }}
+#         TITLES_LIST: ${{ inputs.titles_list }}
+#         DESCS_LIST: ${{ inputs.descs_list }}
+#         HASHTAGS: ${{ inputs.hashtags }}
+#         TARGET_URL: ${{ inputs.target_url }}
+        
+#         # 🛡️ PROXY VARIABLES
+#         USE_PROXY: ${{ inputs.use_proxy }}
+#         PROXY_IP: '31.59.20.176'
+#         PROXY_PORT: '6754'
+#         PROXY_USER: 'dgmtstlf'
+#         PROXY_PASS: 'pm4wnuro0gy9'
+        
+#       run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" python -u manager.py
